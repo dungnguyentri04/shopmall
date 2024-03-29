@@ -1,0 +1,44 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<body class="sub_page">
+
+    <!-- product section -->
+
+        <section class="product_section layout_padding">
+            <div class="container">
+                <div class="heading_container heading_center"><h2>Our Products</h2></div>
+            <div class="row">
+
+            {% for product in products %}
+                <div class="col-sm-6 col-lg-4">
+                    <div class="box" >
+                        <div class="img-box" style="background-color: #f0f0f0;border-radius: 5px;" >
+                            <img src="{{product.imageURL}}" alt="">
+                            <a href="{% url 'detail_product' pk=product.id %}" class="add_cart_btn"><span>View more</span></a>
+                        </div>
+                        <div class="detail-box">
+                            <h5>{{product.name}}</h5>
+                            <div class="product_info">
+                                <h5><span>$</span> {{product.price}}</h5>
+                                <div class="star_container">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            </div>
+                <div class="btn_box"><a href="" class="view_more-link">View More</a></div>
+            </div>
+        </section>
+
+    <!-- end product section -->
+
+{% endblock %}

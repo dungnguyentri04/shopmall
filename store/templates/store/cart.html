@@ -1,0 +1,89 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <!-- <img src="{{item.product.imageURL}}" alt=""> -->
+
+    <section class="h-100" style="background-color: #eee;">
+        <div class="container h-100 py-5">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-10">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="fw-normal mb-0 text-black" style="color: rgb(66, 66, 66);">Shopping Cart</h3>
+                        <div>
+                            <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
+                        </div>
+                    </div>
+                    {% if cartItems > 0 %}
+                        {% for item in items %}
+                            <div class="card rounded-3 mb-4">
+                                <div class="card-body p-4" style="background-color: rgb(66, 66, 66); color: #eee;border-radius: 5px;">
+                                    <div class="row d-flex justify-content-between align-items-center">
+                                        <div class="col-md-2 col-lg-2 col-xl-2" style="background-color: aliceblue;margin-left: 20px;padding-top: 10px;padding-bottom: 10px;border-radius: 5px;">
+                                            <img style="border-radius: 5px;" src="{{item.product.imageURL}}" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                            <p class="lead fw-normal mb-2">{{item.product.name}}</p>
+                                            <p><span class="text-muted color-product"><p></p> Size: </span>{{item.size}}</p>
+                                            <p><span class="text-muted size-product"><p></p> Color: </span>{{item.color}}</p>
+                                        </div> 
+                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                            <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <i data-action="remove" data-product="{{item.product.id}}" class="fas fa-minus update-cart" style="color: aliceblue;"></i>
+                                            </button>
+                                            <input id="form1" min="0" name="quantity" value="{{item.quantity}}" type="number" class="form-control form-control-sm" />
+                                            <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <i data-action="add" data-product="{{item.product.id}}" data-color="{{item.color}}" data-size="{{item.size}}" class="fas fa-plus update-cart" style="color: aliceblue;"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <h5 class="mb-0">${{item.get_total}}</h5>
+                                        </div>
+                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                            <a href="#!" class="text-danger">
+                                                <i data-action="delete" class="fas fa-trash fa-lg update-cart" data-product="{{item.product.id}}" data-color="{{item.color}}" data-size="{{item.size}}"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <div class="card">
+                            <div class="card-body" style="background-color: rgb(66, 66, 66);border-radius: 5px;">
+                                <button id="Proceed_to_pay" type="button" class="btn btn-warning btn-block btn-lg" style="color: rgb(255, 255, 255);">Proceed to Pay</button>
+                            </div>
+                        </div>
+                
+                    {% else %}
+                    <div class="card">
+                        <div class="card-body" style="background-color: rgb(66, 66, 66);border-radius: 5px;">
+                            <h4 class="fw-normal mb-0 text-black" style="color: rgb(255, 255, 255);text-align: center;">No product to pay</h4>
+                                <!-- <button type="button" class="btn btn-warning btn-block btn-lg" style="color: rgb(255, 255, 255);">Proceed to Pay</button> -->
+                        </div>
+                    </div>
+                    {% endif %}
+    
+                    <!-- <div class="card mb-4">
+                        <div class="card-body p-4 d-flex flex-row" style="background-color: rgb(66, 66, 66); border-radius: 5px;">
+                            <div class="form-outline flex-fill">
+                                <input type="text" id="form1" class="form-control form-control-lg" />
+                                <label class="form-label" for="form1" style="color: aliceblue;">Discound code</label>
+                            </div>
+                            <button type="button" class="btn btn-outline-warning btn-lg ms-3">Apply</button>
+                        </div>
+                    </div> -->
+    
+    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let proceedToPay = document.getElementById("Proceed_to_pay")
+        proceedToPay.onclick = function(){
+            window.location.href = "{% url 'checkout' %}"
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+
+.user_option_box{
+    position: relative;
+}
+
+.sub-menu-wrap{
+    border-radius: 2px solid black;
+    max-height: 0;
+    position: absolute;
+    top: calc(100% + 0px);
+    right: -10px;
+    width: 150px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    z-index: 9999;
+}
+
+.sub-menu-wrap.open-menu{
+    max-height: 400px;
+}
+
+.sub-menu{
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+    padding: 10px 5px 0px 10px;
+    margin-right: 0px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.sub-menu-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(73, 78, 77);
+    padding: 10px;
+}
+
+.sub-menu-link p{
+    width: 100%;
+    color: #3a4468;
+    padding:auto;
+    font-size: 200;
+
+}
+
+.sub-menu-link img{
+    width: 25px;
+    border-radius: 50%;
+    background: #3a4468;
+    color: aliceblue;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.sub-menu-link:hover p{
+    font-weight: 600;
+
+}
+
+
